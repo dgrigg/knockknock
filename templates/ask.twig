@@ -24,7 +24,7 @@
 	<div class="buttons">
 		<input id="submit" class="btn submit " type="submit" value="Unlock"/>
 	</div>
-    {% if error  %}
+    {% if error is defined  %}
 	<div>
 		<p class="error" >{{ error }}</p>
 	</div>
