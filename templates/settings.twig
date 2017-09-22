@@ -1,0 +1,12 @@
+{% import "_includes/forms" as forms %}
+
+<h2>Knock, knock ... who's there?</h2>
+<p>Share this password with anyone you want to access your website.</p>
+{{ forms.textField({
+    label: 'Password',
+    instructions: 'Minimum 8 characters, don\'t make it easy.',
+    id: 'password',
+    name: 'password',
+    value: settings['password'],
+    errors: settings.getErrors('password')})
+}}

@@ -1,0 +1,34 @@
+{% extends "_layouts/base" %}
+{% set title = "Site Locked"|t %}
+{% set bodyClass = 'login' %}
+{% includecssresource "css/login.css" %}
+
+{% block body %}
+<form id="login-form" method="post" accept-charset="UTF-8">
+	<input type="hidden" name="action" value="knockKnock/answer"/>
+	<input type="hidden" name="redir" value="{{ redir }}"/>
+	<input type="hidden" name="requireLogin" value="true"/>
+    {{ getCsrfInput() }}
+	<h1>Site locked</h1>
+
+	<div id="login-fields" class="nested-fields">
+		<div class="field" id="password-field">
+			<div class="input ltr">
+				<div class="passwordwrapper">
+					<input class="text password fullwidth" type="password" id="password" name="password" autocomplete="off" placeholder="Password"/>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="buttons">
+		<input id="submit" class="btn submit " type="submit" value="Unlock"/>
+	</div>
+    {% if error  %}
+	<div>
+		<p class="error" >{{ error }}</p>
+	</div>
+	{% endif %}
+</form>
+
+{% endblock %}

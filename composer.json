@@ -1,0 +1,14 @@
+{
+	"name": "/knockknock",
+	"description": "Password protect your entire craft website with a single password",
+	"type": "craft-plugin",
+	"authors": [
+		{
+			"name": "Derrick Grigg",
+			"homepage": "dgrigg.com"
+		}
+	],
+	"require": {
+		"composer/installers": "~1.0"
+	}
+}
