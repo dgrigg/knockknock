@@ -4,13 +4,22 @@
 {% includecssresource "css/login.css" %}
 
 {% block body %}
-<form id="login-form" method="post" accept-charset="UTF-8">
+{%- set hasLogo = (CraftEdition >= CraftClient and craft.rebrand.isLogoUploaded ? true : false) -%} 
+<form id="login-form" method="post" accept-charset="UTF-8"
+{%- if hasLogo -%}
+	{%- set logo = craft.rebrand.logo -%}
+	{%- set padding = logo.height + 30 -%}
+	class="has-logo" style="background-image: url({{ logo.url }}); background-size: {{ logo.width }}px {{ logo.height }}px; padding-top: {{ padding }}px; margin-top: -{{ round((353+padding)/2) }}px"
+{%- endif %}>
 	<input type="hidden" name="action" value="knockKnock/answer"/>
 	<input type="hidden" name="redir" value="{{ redir }}"/>
 	<input type="hidden" name="requireLogin" value="true"/>
-    {{ getCsrfInput() }}
-	<h1>{{ "Site locked"|t }}</h1>
-
+  {{ getCsrfInput() }}
+    
+  {% if not hasLogo -%}
+		<h1>{{ "Site locked"|t }}</h1>
+	{%- endif %}
+	
 	<div id="login-fields" class="nested-fields">
 		<div class="field" id="password-field">
 			<div class="input ltr">
@@ -22,7 +31,7 @@
 	</div>
 
 	<div class="buttons">
-		<input id="submit" class="btn submit " type="submit" value="{{ "Unlock"|t }}"/>
+		<input id="submit" class="btn submit" type="submit" value="{{ "Unlock"|t }}"/>
 	</div>
     {% if error is defined  %}
 	<div>
